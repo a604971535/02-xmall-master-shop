@@ -16,7 +16,7 @@ public class Result<T> implements Serializable {
     private boolean success;
 
     //失败消息
-    private String errmessage;
+    private String message;
 
     //时间戳
     private long timestamp=System.currentTimeMillis();
@@ -40,12 +40,12 @@ public class Result<T> implements Serializable {
         this.success = success;
     }
 
-    public String getErrmessage() {
-        return errmessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setErrmessage(String errmessage) {
-        this.errmessage = errmessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public long getTimestamp() {

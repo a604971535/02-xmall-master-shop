@@ -20,7 +20,17 @@
     <dependencies>
         <dependency>
             <groupId>com.ehl</groupId>
+            <artifactId>xmall-shop-service-bean</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ehl</groupId>
             <artifactId>xmall-shop-service-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ehl</groupId>
+            <artifactId>xmall-shop-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!-- Spring -->
@@ -120,6 +130,12 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

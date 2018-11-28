@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+	 	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+">
+    <!--开启注解驱动-->
+    <!-- 第一种方式: 注解方式配置事物 -->
+    <tx:annotation-driven/>
+
+    <!--配置事务管理器-->
+    <bean id="transManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--配置声明式事务-->
+    <!-- 2.配置事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transManager">
+        <tx:attributes>
+            <tx:method name="save*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="insert*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="batch*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="modify*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="get*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="search*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 3.配置切面 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* com.ehl.xmall.service..*.*(..))" id="aopPointcut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="aopPointcut" />
+    </aop:config>
+
+</beans>
