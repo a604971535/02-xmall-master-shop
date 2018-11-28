@@ -182,7 +182,7 @@
     };
 
     $.ajax({
-        url: '/geetestInit?t=' + (new Date()).getTime(), // 加随机数防止缓存
+        url: '/user/geetestInit?t=' + (new Date()).getTime(), // 加随机数防止缓存
         type: "GET",
         dataType: 'json',
         success: function (data) {

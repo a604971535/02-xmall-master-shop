@@ -1,11 +1,14 @@
 package com.ehl.xmall.service.impl;
 
 import com.ehl.common.exception.XmallException;
+import com.ehl.xmall.bean.TbBase;
 import com.ehl.xmall.bean.TbShiroFilter;
 import com.ehl.xmall.bean.TbShiroFilterExample;
+import com.ehl.xmall.mapper.TbBaseMapper;
 import com.ehl.xmall.mapper.TbShiroFilterMapper;
 import com.ehl.xmall.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
@@ -20,6 +23,12 @@ public class SystemServiceImpl implements SystemService {
     @Autowired
     TbShiroFilterMapper shiroFilterMapper;
 
+    @Autowired
+    TbBaseMapper baseMapper;
+
+    @Value("${BASEID}")
+    private Integer baseId;
+
     @Override
     public List<TbShiroFilter> getShiroFilter() {
 
@@ -33,5 +42,16 @@ public class SystemServiceImpl implements SystemService {
         }
 
         return shiroFilterList;
+    }
+
+    @Override
+    public TbBase getBase() {
+
+        TbBase tbBase = baseMapper.selectByPrimaryKey(baseId);
+        if(tbBase==null)
+        {
+            throw new XmallException("获取基本信息失败");
+        }
+        return tbBase;
     }
 }

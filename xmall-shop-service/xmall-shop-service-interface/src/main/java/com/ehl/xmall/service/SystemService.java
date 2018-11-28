@@ -1,5 +1,6 @@
 package com.ehl.xmall.service;
 
+import com.ehl.xmall.bean.TbBase;
 import com.ehl.xmall.bean.TbShiroFilter;
 
 import java.util.List;
@@ -13,4 +14,6 @@ import java.util.List;
 public interface SystemService {
 
     List<TbShiroFilter> getShiroFilter();
+
+    TbBase getBase();
 }
