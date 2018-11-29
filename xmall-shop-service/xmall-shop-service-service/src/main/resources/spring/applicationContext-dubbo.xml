@@ -14,7 +14,13 @@
 
     <bean id="systemServiceImpl" class="com.ehl.xmall.service.impl.SystemServiceImpl"/>
     <bean id="userServiceImpl" class="com.ehl.xmall.service.impl.UserServiceImpl"/>
+    <bean id="itemServiceImpl" class="com.ehl.xmall.service.impl.ItemServiceImpl"/>
+    <bean id="memberServiceImpl" class="com.ehl.xmall.service.impl.MemberServiceImpl"/>
+    <bean id="orderServiceImpl" class="com.ehl.xmall.service.impl.OrderServiceImpl"/>
 
     <dubbo:service interface="com.ehl.xmall.service.SystemService" ref="systemServiceImpl" timeout="10000"/>
     <dubbo:service interface="com.ehl.xmall.service.UserService" ref="userServiceImpl" timeout="10000"/>
+    <dubbo:service interface="com.ehl.xmall.service.ItemService" ref="itemServiceImpl" timeout="10000"/>
+    <dubbo:service interface="com.ehl.xmall.service.MemberService" ref="memberServiceImpl" timeout="10000"/>
+    <dubbo:service interface="com.ehl.xmall.service.OrderService" ref="orderServiceImpl" timeout="10000"/>
 </beans>

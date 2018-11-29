@@ -15,7 +15,7 @@ public class Result<T> implements Serializable {
     //成功标志
     private boolean success;
 
-    //失败消息
+    //响应消息
     private String message;
 
     //时间戳

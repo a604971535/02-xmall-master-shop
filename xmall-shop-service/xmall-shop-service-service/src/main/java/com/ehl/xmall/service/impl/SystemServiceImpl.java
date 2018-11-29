@@ -1,14 +1,15 @@
 package com.ehl.xmall.service.impl;
 
 import com.ehl.common.exception.XmallException;
-import com.ehl.xmall.bean.TbBase;
-import com.ehl.xmall.bean.TbShiroFilter;
-import com.ehl.xmall.bean.TbShiroFilterExample;
+import com.ehl.xmall.bean.*;
 import com.ehl.xmall.mapper.TbBaseMapper;
+import com.ehl.xmall.mapper.TbItemMapper;
+import com.ehl.xmall.mapper.TbOrderItemMapper;
 import com.ehl.xmall.mapper.TbShiroFilterMapper;
 import com.ehl.xmall.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
  * @author: 王明飞 102365
  * @createtime: 2018/11/28 14:42
  */
+@Service
 public class SystemServiceImpl implements SystemService {
 
     @Autowired
@@ -25,6 +27,9 @@ public class SystemServiceImpl implements SystemService {
 
     @Autowired
     TbBaseMapper baseMapper;
+
+    @Autowired
+    TbOrderItemMapper orderItemMapper;
 
     @Value("${BASEID}")
     private Integer baseId;
@@ -53,5 +58,24 @@ public class SystemServiceImpl implements SystemService {
             throw new XmallException("获取基本信息失败");
         }
         return tbBase;
+    }
+
+    @Override
+    public TbOrderItem getWeekHotItem() {
+
+
+        List<TbOrderItem> list = orderItemMapper.getWeekHotItem();
+
+        if(list==null){
+            throw new XmallException("获取热销商品数据失败");
+        }
+        if(list.size()==0){
+            TbOrderItem tbOrderItem=new TbOrderItem();
+            tbOrderItem.setTotal(0);
+            tbOrderItem.setTitle("暂无数据");
+            tbOrderItem.setPicPath("");
+            return tbOrderItem;
+        }
+        return list.get(0);
     }
 }

@@ -8,6 +8,7 @@ import com.ehl.xmall.bean.TbUserExample;
 import com.ehl.xmall.mapper.TbUserMapper;
 import com.ehl.xmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ import java.util.Set;
  * @author: 王明飞 102365
  * @createtime: 2018/11/28 15:53
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired

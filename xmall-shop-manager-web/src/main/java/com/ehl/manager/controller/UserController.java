@@ -1,15 +1,14 @@
 package com.ehl.manager.controller;
 
-import cn.hutool.crypto.digest.DigestUtil;
 import com.ehl.common.bean.Result;
 import com.ehl.common.utils.GeetestLib;
 import com.ehl.common.utils.ResultUtil;
 import com.ehl.xmall.bean.TbUser;
-import com.ehl.xmall.service.SystemService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.PrintWriter;
 import java.util.HashMap;
 
 /**
@@ -28,6 +26,7 @@ import java.util.HashMap;
  */
 @RestController
 @RequestMapping("/user")
+@Api(description = "管理员管理")
 public class UserController {
 
     /**
@@ -46,11 +45,12 @@ public class UserController {
 
     @Value("${newfailback}")
     private boolean newfailback;
+
     @RequestMapping(value = "/userInfo",method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户信息")
     public Result<TbUser> getUserInfo()
     {
         return null;
-
     }
 
     
@@ -61,7 +61,8 @@ public class UserController {
      * @param
      * @return
      */
-    @RequestMapping("/geetestInit")
+    @RequestMapping(value = "/geetestInit",method = RequestMethod.GET)
+    @ApiOperation(value = "极验初始化")
     public String geetesrInit(HttpServletRequest request)
     {
         GeetestLib gtSdk = new GeetestLib(geetest_id, geetest_key,
@@ -85,6 +86,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @ApiOperation(value = "登陆接口")
     public Result<Object> login(String username, String password,
                                 String challenge,String validate,String seccode,
                                 HttpServletRequest request)

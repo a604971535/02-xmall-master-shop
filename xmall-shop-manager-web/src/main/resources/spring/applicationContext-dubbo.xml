@@ -15,5 +15,8 @@
     
     <dubbo:reference interface="com.ehl.xmall.service.SystemService" id="systemService"/>
     <dubbo:reference interface="com.ehl.xmall.service.UserService" id="userService"/>
+    <dubbo:reference interface="com.ehl.xmall.service.ItemService" id="itemService"/>
+    <dubbo:reference interface="com.ehl.xmall.service.MemberService" id="memberService"/>
+    <dubbo:reference interface="com.ehl.xmall.service.OrderService" id="orderService"/>
 
 </beans>
